@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Songs</h1>
+
+<%= link_to new_song_path do %>
+  <i class="fa fa-plus-square-o" aria-hidden="true"></i> New Song
+<% end %>
+
+<br>
+  <div class="row">
+    <% @songs.each do |song| %>
+      <div class="col-md-6">
+        <div class="well">
+          <h3><%= link_to song.name[0..21], song %></h3>
+          <h4><%= song.artist.name %></h4>
+          <p>
+            <% song.rating.to_i.times do %>
+              <i class="fa fa-star-o yellow" aria-hidden="true"></i>
+            <% end %>
+          </p>
+         
+           <p>
+            <%= link_to edit_song_path(song) do %>
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit 
+            <% end %> 
+            <%= link_to song, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <i class="fa fa-minus-square-o" aria-hidden="true"></i> Destroy
+            <% end %>
+           </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
